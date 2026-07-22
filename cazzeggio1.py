@@ -11,30 +11,27 @@ Original file is located at
 
 nome_ia = "CASPER"
 argomenti = ("come va?" , "di che vuoi parlare?" , "che tempo fa?" , "un calcolo", "quanti giorni ha questo mese?" , "fammi un alberello" ,  "ciao amore" , "esci")
-<<<<<<< HEAD
+dati_utente = []
 risposte_utente = []
-=======
-
->>>>>>> c70f965f85e6b30319ca5fba12e7cfdf42fef18e
 
 
 
 ##funzioni
 
-<<<<<<< HEAD
+def dati_nome():
+  dati_nome = input()
+  dati_utente.append(dati_nome)
+  return dati_nome
+
 def chiedi():
   risposta = input()
   risposte_utente.append(risposta)
   return risposta
 
-def stampa(risposta):
-  print(risposta)
-=======
->>>>>>> c70f965f85e6b30319ca5fba12e7cfdf42fef18e
+def stampa(risposta): print(risposta)
 
 def opzioni(argomenti):
-    for i, argomento in enumerate(argomenti):
-        print("-" , i, argomento)
+  for i, argomento in enumerate(argomenti): print("-" , i, argomento)
 
 
 
@@ -42,11 +39,7 @@ def opzioni(argomenti):
 
 print ("Ciao, mi chiamo", nome_ia)
 print ("Come ti chiami?")
-<<<<<<< HEAD
-nome_utente= chiedi()
-=======
-nome_utente = input()
->>>>>>> c70f965f85e6b30319ca5fba12e7cfdf42fef18e
+nome_utente= dati_nome()
 
 def sesso_utente(nome):
   if nome_utente [-1] == "a" or "e":
@@ -59,25 +52,16 @@ sesso_utente(nome_utente)
 while True:
   print("\nCosa facciamo?")
   opzioni(argomenti)
-<<<<<<< HEAD
   argomento = chiedi()
-=======
-  argomento = input()
->>>>>>> c70f965f85e6b30319ca5fba12e7cfdf42fef18e
 
 
 
 
-  if argomento == "come va?":
-    print("sto lavorando.... dimmi")
+  if argomento == "come va?": print("sto lavorando.... dimmi")
 
   if argomento == "di che vuoi parlare?":
     print("vuoi che racconto una barzelletta?")
-<<<<<<< HEAD
     risposta_barzelletta = chiedi()
-=======
-    risposta_barzelletta = input()
->>>>>>> c70f965f85e6b30319ca5fba12e7cfdf42fef18e
     if risposta_barzelletta == "si":
       print("il colmo per chip? abbaiare...")
 
@@ -111,21 +95,13 @@ while True:
 
   if argomento == "quanti giorni ha questo mese?":
     print("dimmi di che mese parli")
-<<<<<<< HEAD
     mese = chiedi()
-=======
-    mese = input()
->>>>>>> c70f965f85e6b30319ca5fba12e7cfdf42fef18e
 
     anno = 0
 
     if mese == "febbraio":
       print("di che anno parliamo?")
-<<<<<<< HEAD
       anno = int(chiedi())
-=======
-      anno = int(input())
->>>>>>> c70f965f85e6b30319ca5fba12e7cfdf42fef18e
     def durata_mese (mese , anno):
       if mese == "febbraio":
         if anno % 4 == 0:
@@ -150,10 +126,7 @@ while True:
 
   if argomento == "esci":
     print("a presto!")
-<<<<<<< HEAD
-    print(risposte_utente)
-=======
->>>>>>> c70f965f85e6b30319ca5fba12e7cfdf42fef18e
+    print(dati_utente , risposte_utente)
     break
 
   if argomento == "ciao amore":
