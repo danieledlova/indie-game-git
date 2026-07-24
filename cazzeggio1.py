@@ -23,6 +23,10 @@ def dati_nome():
   dati_utente.append(dati_nome)
   return dati_nome
 
+def dati_eta():
+  dati_eta= input()
+  dati_utente.append(dati_eta)
+  return dati_eta
 def chiedi():
   risposta = input()
   risposte_utente.append(risposta)
@@ -46,8 +50,11 @@ def sesso_utente(nome):
     print("Benvenuta " + nome_utente)
   else:
     print("Benvenuto " + nome_utente)
-
 sesso_utente(nome_utente)
+
+print("quanti anni hai?")
+età_utente = dati_eta()
+
 
 while True:
   print("\nCosa facciamo?")
@@ -55,7 +62,7 @@ while True:
   argomento = chiedi()
 
 
-
+#scelte di argomento
 
   if argomento == "come va?": print("sto lavorando.... dimmi")
 
