@@ -133,6 +133,7 @@ while True:
 
   if argomento == "esci":
     print("a presto!")
+    print("hai chiesto " , len(risposte_utente) , "domande")
     print(dati_utente , risposte_utente)
     break
 
