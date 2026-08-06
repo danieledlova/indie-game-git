@@ -27,6 +27,7 @@ def dati_eta():
   dati_eta= input()
   dati_utente.append(dati_eta)
   return dati_eta
+
 def chiedi():
   risposta = input()
   risposte_utente.append(risposta)
@@ -143,6 +144,11 @@ while True:
       print("AMORE MIO")
       amore_mio = amore_mio + 1
     print("e ancora e ancora e ancora")
+
+
+  
+
+  
 
   else:
     print(" ")
