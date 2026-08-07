@@ -1,11 +1,10 @@
 #Casper 0.2
 
-import re
 from bs4 import BeautifulSoup
-import urllib.request , urllib.parse , urllib.error
+import urllib.request , urllib.parse
 from urllib.parse import urljoin
 import requests
-import json
+import json, ssl
 
 
 
@@ -13,7 +12,7 @@ import json
 nome_ia = "Casper"
 risposte_utente = []
 info_utente = []
-argomenti = ["Meteo" , "di che vuoi parlare?" , "fammi navigare"]
+argomenti = ["Meteo" , "di che vuoi parlare?" , "fammi navigare" , "trovami questa città"]
 
 
 #----------definizioni
@@ -63,14 +62,17 @@ print("Come ti chiami")
 nome_utente = dati_nome()
 
 while True:
-    print("Cosa facciamo" , nome_utente , "?")
+    print("\n Cosa facciamo" , nome_utente , "?")
     for x , y in enumerate(argomenti):
          print(x , y)
     reqU = domanda()
 
+    #meteo
+
     if reqU == "0" or reqU == "meteo":
         meteo()
 
+    #barzellette
 
     if reqU == "1" or reqU == "di che vuoi parlare?":
         print("vuoi che ti racconto una barzelletta?")
@@ -82,7 +84,7 @@ while True:
             print("\n")
             continue
 
-
+    #navigazione su links
     
     if reqU == "2" or reqU == "fammi navigare":
         url = input("inserisci link: ")
@@ -120,6 +122,29 @@ while True:
                 continue
 
             url = urljoin(url, conn[strada])
+
+    #geoposition
+
+    if reqU == "3" or reqU == "trovami questa città":
+        serviceurl = 'https://py4e-data.dr-chuck.net/opengeo?'
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+
+        cittàreq = input("Inserisci città: ")
+        d = {}
+        d["q"] = cittàreq
+
+        url = serviceurl + urllib.parse.urlencode(d)
+
+        urlh = urllib.request.urlopen(url , context=ctx)
+        data = urlh.read().decode()
+        datajson = json.loads(data)
+        print("\n longitudine: " , datajson["features"][0]["properties"]["lon"])
+        print(" latitudine: " , datajson["features"][0]["properties"]["lat"]) 
+        print(datajson["features"][0]["properties"]["country_code"])
+        print(datajson["features"][0]["properties"]["state"]) 
+        print("---------------------------------------")         
 
             
     
