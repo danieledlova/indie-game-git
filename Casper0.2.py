@@ -5,14 +5,23 @@ import urllib.request , urllib.parse
 from urllib.parse import urljoin
 import requests
 import json, ssl
+import sqlite3
 
+
+
+
+
+connSQlite = sqlite3.connect("Casperdatabase0.1.sqlite")
+cur = connSQlite.cursor()
+
+cur.execute('''CREATE TABLE IF NOT EXISTS Memoria (nomeUtente TEXT ,
+richieste TEXT)''')
 
 
 
 nome_ia = "Casper"
 risposte_utente = []
-info_utente = []
-argomenti = ["Meteo" , "di che vuoi parlare?" , "fammi navigare" , "trovami questa città"]
+argomenti = ["Meteo" , "di che vuoi parlare?" , "fammi navigare" , "trovami questa città" , "esci"]
 
 
 #----------definizioni
@@ -20,15 +29,11 @@ argomenti = ["Meteo" , "di che vuoi parlare?" , "fammi navigare" , "trovami ques
 
 def domanda():
     reqU = input()
+    cur.execute('''INSERT INTO Memoria (nomeUtente , richieste) VALUES (? , ?)''' , (nomeU , reqU,))
+    connSQlite.commit()
     risposte_utente.append(reqU)
     return reqU
-
-def dati_nome():
-    dati_nome = input()
-    info_utente.append(dati_nome)
-    return dati_nome
-    
-    
+   
 
 
 def meteo():
@@ -57,12 +62,16 @@ def meteo():
 
 #----------PROGRAMMA
 
+
+
 print("Ciao, sono ", nome_ia)
-print("Come ti chiami")
-nome_utente = dati_nome()
+nomeU = input("Come ti chiami?: ")
+
+cur.execute('''INSERT INTO Memoria (nomeUtente) VALUES (?)''' , (nomeU,)) 
+connSQlite.commit()
 
 while True:
-    print("\n Cosa facciamo" , nome_utente , "?")
+    print("\n Cosa facciamo" , nomeU , "?")
     for x , y in enumerate(argomenti):
          print(x , y)
     reqU = domanda()
@@ -91,6 +100,7 @@ while True:
         if not url.startswith("https:"):
             print("Link non valido")
             exit()
+
         while True:
 
 
@@ -149,24 +159,9 @@ while True:
             
     
             
-        
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    if reqU == "esci":
+    if reqU == "esci" or reqU == "4":
         print("Okey ciao!")
-        print("Ecco la tua cronologia \n" , info_utente ,  risposte_utente)
         exit()
 
 
