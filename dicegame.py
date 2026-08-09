@@ -2,7 +2,7 @@
 
 
 import random
-
+import time
 
 
 def roll():
@@ -36,7 +36,7 @@ while max(players_scores) < max_score:
             if decisione.lower() != "y":
                 break
 
-            
+            time.sleep(1)
             valore = roll()
             
 
